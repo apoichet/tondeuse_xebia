@@ -38,15 +38,21 @@ public class ActionTondeuseServiceImpl implements ActionTondeuseService {
 		Tondeuse tondeuse = new Tondeuse(numeroTondeuse, positionX, positionY,
 				orientation, surface);
 
-		// On evite de faire déborder la tondeuse de la surface
-		boolean depasseLargeur = depasseLargeur(positionX, surface);
-		if (depasseLargeur) {
-			tondeuse.setPositionX(surface.getLargeur());
-		}
-		
-		boolean depasseLongeur = depasseLongueur(positionY, surface);
-		if (depasseLongeur) {
-			tondeuse.setPositionY(surface.getLongueur());
+		// On evite de faire dÃ©border la tondeuse de la surface
+		if (surface != null) {
+
+			boolean depasseLargeur = depassement(positionX,
+					surface.getLargeur());
+			if (depasseLargeur) {
+				tondeuse.setPositionX(surface.getLargeur());
+			}
+
+			boolean depasseLongeur = depassement(positionY,
+					surface.getLongueur());
+			if (depasseLongeur) {
+				tondeuse.setPositionY(surface.getLongueur());
+			}
+
 		}
 
 		return tondeuse;
@@ -132,7 +138,16 @@ public class ActionTondeuseServiceImpl implements ActionTondeuseService {
 
 		Surface surface = tondeuseMoove.getSurface();
 		
-		boolean ok = !(depasseLargeur(positionX, surface) || depasseLongueur(positionY, surface));
+		boolean ok = false;
+
+		if (surface != null) {
+
+			boolean okLargeur = !depassement(positionX, surface.getLargeur());
+			boolean okLongeur = !depassement(positionY, surface.getLongueur());
+
+			ok = okLargeur && okLongeur;
+
+		}
 
 		return ok;
 	}
@@ -154,37 +169,15 @@ public class ActionTondeuseServiceImpl implements ActionTondeuseService {
 		
 	}
 	
-	protected boolean depasseLargeur(int positionX, Surface surface){
+	protected boolean depassement(int position, int surface) {
 		boolean depasse = false;
-		
-		if (surface != null) {
-			
-			int largeur = surface.getLargeur();
-			
-			if (largeur < positionX) {
-				
-				depasse = true;
-				
-			}
-			
+
+		if (surface < position || position < 0) {
+
+			depasse = true;
+
 		}
-		return depasse;
-	}
-	
-	protected boolean depasseLongueur(int positionY, Surface surface){
-		boolean depasse = false;
-		
-		if (surface != null) {
-			
-			int longueur = surface.getLongueur();
-			
-			if (longueur < positionY) {
-				
-				depasse = true;
-				
-			}
-			
-		}
+
 		return depasse;
 	}
 
