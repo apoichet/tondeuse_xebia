@@ -24,7 +24,7 @@ public class TondeuseUtils {
 
 	public static final char CODE_GAUCHE = 'G';
 
-	public static final String MSG_COLISION = "Attention colision !";
+	public static final String MSG_COLISION = "Attention colision dans la tondeuse n°";
 	
 	public static final String KEY_SURFACE = "Surface de jeu";
 

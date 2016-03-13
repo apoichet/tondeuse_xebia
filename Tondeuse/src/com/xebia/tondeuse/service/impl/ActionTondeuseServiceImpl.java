@@ -159,7 +159,7 @@ public class ActionTondeuseServiceImpl implements ActionTondeuseService {
 			
 			if (positionX == tondeuseStatic.getPositionX() && positionY == tondeuseStatic.getPositionY()) {
 			
-				System.out.println(TondeuseUtils.MSG_COLISION);
+				System.out.println(TondeuseUtils.MSG_COLISION + StringUtils.SPACE + tondeuseStatic.getNumero());
 				colision = true;
 			}
 			
