@@ -39,8 +39,12 @@ public class TondeuseUtils {
 	public static final String NOM_FICHIER = "instructions.txt";
 
 	public static final int LARGEUR_SURFACE_DEFAUT = 5;
+	
+	public static final int LARGEUR_SURFACE_MIN = 0;
 
 	public static final int LONGUEUR_SURFACE_DEFAUT = 5;
+	
+	public static final int LONGUEUR_SURFACE_MIN = 0;
 
 	public static final String POSITION_X_DEFAUT = "0";
 

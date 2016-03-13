@@ -42,13 +42,13 @@ public class ActionTondeuseServiceImpl implements ActionTondeuseService {
 		if (surface != null) {
 
 			boolean depasseLargeur = depassement(positionX,
-					surface.getLargeur());
+					surface.getLargeur(), TondeuseUtils.LARGEUR_SURFACE_MIN);
 			if (depasseLargeur) {
 				tondeuse.setPositionX(surface.getLargeur());
 			}
 
 			boolean depasseLongeur = depassement(positionY,
-					surface.getLongueur());
+					surface.getLongueur(), TondeuseUtils.LONGUEUR_SURFACE_MIN);
 			if (depasseLongeur) {
 				tondeuse.setPositionY(surface.getLongueur());
 			}
@@ -142,8 +142,8 @@ public class ActionTondeuseServiceImpl implements ActionTondeuseService {
 
 		if (surface != null) {
 
-			boolean okLargeur = !depassement(positionX, surface.getLargeur());
-			boolean okLongeur = !depassement(positionY, surface.getLongueur());
+			boolean okLargeur = !depassement(positionX, surface.getLargeur(), TondeuseUtils.LARGEUR_SURFACE_MIN);
+			boolean okLongeur = !depassement(positionY, surface.getLongueur(), TondeuseUtils.LONGUEUR_SURFACE_MIN);
 
 			ok = okLargeur && okLongeur;
 
@@ -169,10 +169,10 @@ public class ActionTondeuseServiceImpl implements ActionTondeuseService {
 		
 	}
 	
-	protected boolean depassement(int position, int surface) {
+	protected boolean depassement(int position, int surface, int positionMin) {
 		boolean depasse = false;
 
-		if (surface < position || position < 0) {
+		if (surface < position || position < positionMin) {
 
 			depasse = true;
 
