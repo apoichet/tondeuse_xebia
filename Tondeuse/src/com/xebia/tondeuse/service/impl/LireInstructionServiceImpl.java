@@ -36,11 +36,11 @@ public class LireInstructionServiceImpl implements LireInstructionService {
 				ligne = StringUtils.replace(ligne, StringUtils.SPACE,
 						StringUtils.EMPTY);
 
-				if (ligne.length() == 2) {
+				if (ligne.length() == 2 && isContainNumber(ligne)) {
 
 					mapInstructions.putIfAbsent(TondeuseUtils.KEY_SURFACE, ligne);
 
-				} else if (ligne.length() == 3) {
+				} else if (ligne.length() == 3 && isContainNumber(ligne)) {
 
 					if (mapInstructions.containsKey(TondeuseUtils.KEY_COORDONNEE_1)) {
 
@@ -120,6 +120,23 @@ public class LireInstructionServiceImpl implements LireInstructionService {
 	@Override
 	public String getInstruction(String ligneFichier) {
 		return ligneFichier;
+	}
+	
+	protected boolean isContainNumber(String chaine){
+		char tabChar[] = chaine.toCharArray();
+		boolean presenceNumber = false;
+		
+		for (char c : tabChar) {
+			
+			if (Character.isDigit(c)) {
+				
+				presenceNumber = true;
+				
+			}
+			
+		}
+		
+		return presenceNumber;
 	}
 
 }

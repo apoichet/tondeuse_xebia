@@ -6,7 +6,7 @@ public class TondeuseUtils {
 
 	public final static String MSG_EXCEPTION_NON_REPERTORIEE = "Exception non répertoriée";
 
-	public final static String MSG_EXCEPTION_FORMAT_NOMBRE = "Exception non répertoriée";
+	public final static String MSG_EXCEPTION_FORMAT_NOMBRE = "Problème de formatage avec la lettre ";
 
 	public final static String MSG_EXCEPTION_FICHIER = "Problème avec le fichier instruction : ";
 	
